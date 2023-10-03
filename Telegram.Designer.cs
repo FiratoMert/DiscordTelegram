@@ -40,7 +40,12 @@
             this.num_Second = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.chk_Disconnected = new System.Windows.Forms.CheckBox();
+            this.chk_Ks = new System.Windows.Forms.CheckBox();
+            this.num_avgExp = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -77,7 +82,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(353, 549);
+            this.label2.Location = new System.Drawing.Point(353, 591);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 15);
             this.label2.TabIndex = 0;
@@ -113,11 +118,12 @@
             this.chk_OnlyKo.TabIndex = 3;
             this.chk_OnlyKo.Text = "Sadece Knight Online Görüntüsü Al";
             this.chk_OnlyKo.UseVisualStyleBackColor = true;
+            this.chk_OnlyKo.CheckedChanged += new System.EventHandler(this.chk_OnlyKo_CheckedChanged);
             // 
             // btn_Start
             // 
             this.btn_Start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_Start.Location = new System.Drawing.Point(46, 368);
+            this.btn_Start.Location = new System.Drawing.Point(46, 410);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(434, 72);
             this.btn_Start.TabIndex = 4;
@@ -128,7 +134,7 @@
             // btn_Exit
             // 
             this.btn_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_Exit.Location = new System.Drawing.Point(46, 446);
+            this.btn_Exit.Location = new System.Drawing.Point(46, 488);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(434, 72);
             this.btn_Exit.TabIndex = 4;
@@ -180,19 +186,78 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "Chat ID :";
             // 
+            // chk_Disconnected
+            // 
+            this.chk_Disconnected.AutoSize = true;
+            this.chk_Disconnected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.chk_Disconnected.Location = new System.Drawing.Point(46, 352);
+            this.chk_Disconnected.Name = "chk_Disconnected";
+            this.chk_Disconnected.Size = new System.Drawing.Size(114, 19);
+            this.chk_Disconnected.TabIndex = 3;
+            this.chk_Disconnected.Text = "Dc Kontrolü Yap";
+            this.chk_Disconnected.UseVisualStyleBackColor = true;
+            // 
+            // chk_Ks
+            // 
+            this.chk_Ks.AutoSize = true;
+            this.chk_Ks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.chk_Ks.Location = new System.Drawing.Point(46, 377);
+            this.chk_Ks.Name = "chk_Ks";
+            this.chk_Ks.Size = new System.Drawing.Size(113, 19);
+            this.chk_Ks.TabIndex = 3;
+            this.chk_Ks.Text = "Ks Kontrolü Yap";
+            this.chk_Ks.UseVisualStyleBackColor = true;
+            // 
+            // num_avgExp
+            // 
+            this.num_avgExp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.num_avgExp.Location = new System.Drawing.Point(356, 376);
+            this.num_avgExp.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.num_avgExp.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.num_avgExp.Name = "num_avgExp";
+            this.num_avgExp.Size = new System.Drawing.Size(115, 21);
+            this.num_avgExp.TabIndex = 5;
+            this.num_avgExp.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label5.Location = new System.Drawing.Point(226, 378);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(124, 15);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Ortalama Gelen Exp :";
+            // 
             // Telegram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(521, 606);
+            this.ClientSize = new System.Drawing.Size(519, 635);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.num_avgExp);
             this.Controls.Add(this.num_Second);
             this.Controls.Add(this.btn_Exit);
             this.Controls.Add(this.btn_Start);
+            this.Controls.Add(this.chk_Ks);
+            this.Controls.Add(this.chk_Disconnected);
             this.Controls.Add(this.chk_OnlyKo);
             this.Controls.Add(this.btn_chatIDSave);
             this.Controls.Add(this.txt_chatID);
             this.Controls.Add(this.btn_TelegramApiSave);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txt_TelegramApi);
@@ -202,7 +267,9 @@
             this.Name = "Telegram";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Telegram";
+            this.Load += new System.EventHandler(this.Telegram_Load);
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -222,5 +289,9 @@
         private System.Windows.Forms.NumericUpDown num_Second;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chk_Disconnected;
+        private System.Windows.Forms.CheckBox chk_Ks;
+        private System.Windows.Forms.NumericUpDown num_avgExp;
+        private System.Windows.Forms.Label label5;
     }
 }

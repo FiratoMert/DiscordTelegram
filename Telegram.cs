@@ -102,7 +102,7 @@ namespace DiscordTelegram
 
             #region ButonAktifPasif
             btn_Start.Enabled = false;
-            chk_OnlyKo.Enabled = false;
+            //chk_OnlyKo.Enabled = false;
             num_Second.Enabled = false;
             btn_Start.Text = "Program Başlatıldı!";
             #endregion
@@ -114,6 +114,7 @@ namespace DiscordTelegram
                 string message = "";
 
                 message = "Eğer bu mesajı aldıysanız telegram ile başarıyla iletişim kurulmuştur. /ss yazarak istediğiniz zaman ekran görüntüsü alabilirsiniz.";
+
 
                 string apiUrl = $"https://api.telegram.org/bot{telegramApi}/sendMessage?chat_id={chatID}&text={message}";
 
@@ -127,21 +128,8 @@ namespace DiscordTelegram
                     MessageBox.Show("Telegram API'ye erişim sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                if (num_Second.Value != 0)
-                {
 
-                    int aralik = (int)num_Second.Value;
-
-                    if (chk_OnlyKo.Checked == true)
-                    {
-                        timer = new System.Threading.Timer(TimerCallBackKnightOnlineClient, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
-                    }
-                    else
-                    {
-                        timer = new System.Threading.Timer(TimerCallBackFullScreen, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
-                    }
-                }
-
+                ScreenShotControl();
                 StartReceiver();
 
             }
@@ -158,11 +146,17 @@ namespace DiscordTelegram
         {
             WebRequest request = WebRequest.Create(apiUrl);
             request.Method = "GET";
+            ServicePointManager.Expect100Continue = true;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             using (WebResponse response = request.GetResponse())
             {
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 using (Stream stream = response.GetResponseStream())
                 {
+                    ServicePointManager.Expect100Continue = true;
+                    ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                     StreamReader reader = new StreamReader(stream, Encoding.UTF8);
                     string result = reader.ReadToEnd();
                 }
@@ -234,6 +228,8 @@ namespace DiscordTelegram
                 bmpScreenshot.Save(stream, System.Drawing.Imaging.ImageFormat.Jpeg);
                 stream.Position = 0;
                 var fileName = $"{DateTime.Now.ToString()} tarihindeki ekran görüntüsü.jpg";
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
                 await botClient.SendPhotoAsync(chatID, stream, fileName);
             }
         }
@@ -287,5 +283,39 @@ namespace DiscordTelegram
             return screenshot;
         }
 
+        
+
+        private void ScreenShotControl()
+        {
+            int aralik = (int)num_Second.Value;
+
+            if (btn_Start.Enabled == false)
+            {
+                if (num_Second.Value != 0)
+                {
+                    if (chk_OnlyKo.Checked == true)
+                    {
+                        timer = new System.Threading.Timer(TimerCallBackKnightOnlineClient, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
+                    }
+                    else
+                    {
+                        timer = new System.Threading.Timer(TimerCallBackFullScreen, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
+                    }
+                }
+            }
+        }
+
+        private void Telegram_Load(object sender, EventArgs e)
+        {
+            chk_Ks.Enabled = false;
+            chk_Disconnected.Enabled = false;
+            num_avgExp.Enabled = false;
+        }
+
+        private void chk_OnlyKo_CheckedChanged(object sender, EventArgs e)
+        {
+            timer = null;
+            ScreenShotControl();
+        }
     }
 }
