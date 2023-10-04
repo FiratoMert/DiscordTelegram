@@ -66,7 +66,6 @@
             this.Name = "Choice";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Choice";
-            this.Load += new System.EventHandler(this.Choice_Load);
             this.ResumeLayout(false);
 
         }

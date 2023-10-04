@@ -44,11 +44,10 @@
             this.chk_Ks = new System.Windows.Forms.CheckBox();
             this.num_avgExp = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
-            this.num_kacSaniyeCheck = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
+            this.chk_onlyProblem = new System.Windows.Forms.CheckBox();
+            this.chk_DeathControl = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_kacSaniyeCheck)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -73,9 +72,9 @@
             // btn_TelegramApiSave
             // 
             this.btn_TelegramApiSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_TelegramApiSave.Location = new System.Drawing.Point(46, 79);
+            this.btn_TelegramApiSave.Location = new System.Drawing.Point(46, 56);
             this.btn_TelegramApiSave.Name = "btn_TelegramApiSave";
-            this.btn_TelegramApiSave.Size = new System.Drawing.Size(431, 44);
+            this.btn_TelegramApiSave.Size = new System.Drawing.Size(434, 44);
             this.btn_TelegramApiSave.TabIndex = 2;
             this.btn_TelegramApiSave.Text = "Telegram Api Kaydet";
             this.btn_TelegramApiSave.UseVisualStyleBackColor = true;
@@ -85,7 +84,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(353, 591);
+            this.label2.Location = new System.Drawing.Point(353, 545);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 15);
             this.label2.TabIndex = 0;
@@ -94,7 +93,7 @@
             // txt_chatID
             // 
             this.txt_chatID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.txt_chatID.Location = new System.Drawing.Point(135, 143);
+            this.txt_chatID.Location = new System.Drawing.Point(135, 106);
             this.txt_chatID.Multiline = true;
             this.txt_chatID.Name = "txt_chatID";
             this.txt_chatID.Size = new System.Drawing.Size(342, 20);
@@ -103,9 +102,9 @@
             // btn_chatIDSave
             // 
             this.btn_chatIDSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_chatIDSave.Location = new System.Drawing.Point(46, 192);
+            this.btn_chatIDSave.Location = new System.Drawing.Point(46, 132);
             this.btn_chatIDSave.Name = "btn_chatIDSave";
-            this.btn_chatIDSave.Size = new System.Drawing.Size(431, 44);
+            this.btn_chatIDSave.Size = new System.Drawing.Size(434, 44);
             this.btn_chatIDSave.TabIndex = 2;
             this.btn_chatIDSave.Text = "Chat ID Kaydet";
             this.btn_chatIDSave.UseVisualStyleBackColor = true;
@@ -115,7 +114,7 @@
             // 
             this.chk_OnlyKo.AutoSize = true;
             this.chk_OnlyKo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_OnlyKo.Location = new System.Drawing.Point(46, 327);
+            this.chk_OnlyKo.Location = new System.Drawing.Point(49, 239);
             this.chk_OnlyKo.Name = "chk_OnlyKo";
             this.chk_OnlyKo.Size = new System.Drawing.Size(218, 19);
             this.chk_OnlyKo.TabIndex = 3;
@@ -126,7 +125,7 @@
             // btn_Start
             // 
             this.btn_Start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_Start.Location = new System.Drawing.Point(46, 410);
+            this.btn_Start.Location = new System.Drawing.Point(46, 364);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(434, 72);
             this.btn_Start.TabIndex = 4;
@@ -137,7 +136,7 @@
             // btn_Exit
             // 
             this.btn_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_Exit.Location = new System.Drawing.Point(46, 488);
+            this.btn_Exit.Location = new System.Drawing.Point(46, 442);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(434, 72);
             this.btn_Exit.TabIndex = 4;
@@ -148,14 +147,9 @@
             // num_Second
             // 
             this.num_Second.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.num_Second.Location = new System.Drawing.Point(43, 292);
+            this.num_Second.Location = new System.Drawing.Point(52, 212);
             this.num_Second.Maximum = new decimal(new int[] {
             100000000,
-            0,
-            0,
-            0});
-            this.num_Second.Minimum = new decimal(new int[] {
-            1,
             0,
             0,
             0});
@@ -172,7 +166,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(43, 252);
+            this.label3.Location = new System.Drawing.Point(49, 179);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(428, 30);
             this.label3.TabIndex = 6;
@@ -183,7 +177,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label4.Location = new System.Drawing.Point(76, 148);
+            this.label4.Location = new System.Drawing.Point(76, 111);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 15);
             this.label4.TabIndex = 0;
@@ -193,7 +187,7 @@
             // 
             this.chk_Disconnected.AutoSize = true;
             this.chk_Disconnected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_Disconnected.Location = new System.Drawing.Point(46, 352);
+            this.chk_Disconnected.Location = new System.Drawing.Point(49, 289);
             this.chk_Disconnected.Name = "chk_Disconnected";
             this.chk_Disconnected.Size = new System.Drawing.Size(114, 19);
             this.chk_Disconnected.TabIndex = 3;
@@ -204,7 +198,7 @@
             // 
             this.chk_Ks.AutoSize = true;
             this.chk_Ks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_Ks.Location = new System.Drawing.Point(46, 377);
+            this.chk_Ks.Location = new System.Drawing.Point(49, 314);
             this.chk_Ks.Name = "chk_Ks";
             this.chk_Ks.Size = new System.Drawing.Size(113, 19);
             this.chk_Ks.TabIndex = 3;
@@ -214,7 +208,7 @@
             // num_avgExp
             // 
             this.num_avgExp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.num_avgExp.Location = new System.Drawing.Point(356, 376);
+            this.num_avgExp.Location = new System.Drawing.Point(356, 313);
             this.num_avgExp.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -238,52 +232,43 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(226, 378);
+            this.label5.Location = new System.Drawing.Point(226, 315);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(124, 15);
             this.label5.TabIndex = 0;
             this.label5.Text = "Ortalama Gelen Exp :";
             // 
-            // num_kacSaniyeCheck
+            // chk_onlyProblem
             // 
-            this.num_kacSaniyeCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.num_kacSaniyeCheck.Location = new System.Drawing.Point(356, 352);
-            this.num_kacSaniyeCheck.Maximum = new decimal(new int[] {
-            100000000,
-            0,
-            0,
-            0});
-            this.num_kacSaniyeCheck.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.num_kacSaniyeCheck.Name = "num_kacSaniyeCheck";
-            this.num_kacSaniyeCheck.Size = new System.Drawing.Size(115, 21);
-            this.num_kacSaniyeCheck.TabIndex = 5;
-            this.num_kacSaniyeCheck.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.chk_onlyProblem.AutoSize = true;
+            this.chk_onlyProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.chk_onlyProblem.Location = new System.Drawing.Point(49, 339);
+            this.chk_onlyProblem.Name = "chk_onlyProblem";
+            this.chk_onlyProblem.Size = new System.Drawing.Size(300, 19);
+            this.chk_onlyProblem.TabIndex = 21;
+            this.chk_onlyProblem.Text = "Sadece Ölüm - Dc - Ks gibi durumlarda bilgilendir.";
+            this.chk_onlyProblem.UseVisualStyleBackColor = true;
+            this.chk_onlyProblem.CheckedChanged += new System.EventHandler(this.chk_onlyProblem_CheckedChanged);
             // 
-            // label6
+            // chk_DeathControl
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label6.Location = new System.Drawing.Point(207, 353);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(143, 15);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "Kaç Saniyede Bir Check :";
+            this.chk_DeathControl.AutoSize = true;
+            this.chk_DeathControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.chk_DeathControl.Location = new System.Drawing.Point(49, 264);
+            this.chk_DeathControl.Name = "chk_DeathControl";
+            this.chk_DeathControl.Size = new System.Drawing.Size(129, 19);
+            this.chk_DeathControl.TabIndex = 20;
+            this.chk_DeathControl.Text = "Ölüm Kontrolü Yap";
+            this.chk_DeathControl.UseVisualStyleBackColor = true;
             // 
             // Telegram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(519, 635);
+            this.ClientSize = new System.Drawing.Size(519, 587);
+            this.Controls.Add(this.chk_onlyProblem);
+            this.Controls.Add(this.chk_DeathControl);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.num_kacSaniyeCheck);
             this.Controls.Add(this.num_avgExp);
             this.Controls.Add(this.num_Second);
             this.Controls.Add(this.btn_Exit);
@@ -294,7 +279,6 @@
             this.Controls.Add(this.btn_chatIDSave);
             this.Controls.Add(this.txt_chatID);
             this.Controls.Add(this.btn_TelegramApiSave);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -308,7 +292,6 @@
             this.Load += new System.EventHandler(this.Telegram_Load);
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.num_kacSaniyeCheck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -332,7 +315,7 @@
         private System.Windows.Forms.CheckBox chk_Ks;
         private System.Windows.Forms.NumericUpDown num_avgExp;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.NumericUpDown num_kacSaniyeCheck;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.CheckBox chk_onlyProblem;
+        private System.Windows.Forms.CheckBox chk_DeathControl;
     }
 }

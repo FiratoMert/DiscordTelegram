@@ -29,6 +29,7 @@ namespace DiscordTelegram
         private string webhookUrl = "";
         private System.Threading.Timer screenshotTimer;
         private System.Threading.Timer screenshotTimer2;
+        private System.Threading.Timer screenshotTimer3;
         private string token = "";
         private DiscordSocketClient client;
 
@@ -218,12 +219,14 @@ namespace DiscordTelegram
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
-
+            #region ButonAktifPasif
             btn_Start.Enabled = false;
             num_Second.Enabled = false;
             chk_Disconnected.Enabled = false;
-            num_kacSaniyeCheck.Enabled = false;
+            chk_onlyProblem.Enabled = false;
+            chk_DeathControl.Enabled = false;
             btn_Start.Text = "Program Başlatıldı!";
+            #endregion
 
 
             try
@@ -238,11 +241,20 @@ namespace DiscordTelegram
 
                 if (chk_Disconnected.Checked == true)
                 {
-                    int aralik = (int)num_kacSaniyeCheck.Value;
-                    screenshotTimer2 = new System.Threading.Timer(DisconnectedControl, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
+
+                    screenshotTimer2 = new System.Threading.Timer(DisconnectedControl, null, TimeSpan.Zero, TimeSpan.FromSeconds(20));
                 }
 
-                ScreenShotControl();
+                if (chk_DeathControl.Checked == true)
+                {
+                    screenshotTimer3 = new System.Threading.Timer(DeathControl, null, TimeSpan.Zero, TimeSpan.FromSeconds(20));
+                }
+
+                if (chk_onlyProblem.Checked == false)
+                {
+                    ScreenShotControl();
+                }
+
             }
             catch (Exception ex)
             {
@@ -336,6 +348,7 @@ namespace DiscordTelegram
                         SendDiscordWebhook(message);
 
                     }
+
                 }
 
                 else
@@ -352,6 +365,103 @@ namespace DiscordTelegram
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        public void DeathControl(object state)
+        {
+            try
+            {
+                // Hedef uygulamanın başlık metnini belirtin
+                string targetWindowTitle = "Knight OnLine Client";
+
+                // Hedef pencereyi bulun
+                IntPtr targetWindowHandle = FindWindow(null, targetWindowTitle);
+
+                if (targetWindowHandle != IntPtr.Zero)
+                {
+                    // Hedef pencere boyutunu ve konumunu alın
+                    RECT targetWindowRect;
+                    GetWindowRect(targetWindowHandle, out targetWindowRect);
+
+                    // Ekran görüntüsünü alın
+                    Bitmap bitmap = CaptureWindow(targetWindowHandle, targetWindowRect);
+
+                    // Görüntüyü geçici bir dosyaya kaydet
+                    var tempFilePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.png");
+                    bitmap.Save(tempFilePath, System.Drawing.Imaging.ImageFormat.Png);
+
+                    string recognizedText;
+
+                    using (var engine = new TesseractEngine(@"C:\tessdata", "eng", EngineMode.Default))
+                    {
+                        using (var img = Pix.LoadFromFile(tempFilePath))
+                        {
+                            using (var page = engine.Process(img))
+                            {
+                                recognizedText = page.GetText();
+
+                            }
+                        }
+                    }
+
+                    // Geçici dosyayı sil
+                    System.IO.File.Delete(tempFilePath);
+
+                    if (recognizedText.ToLower().Contains("press ok"))
+
+                    {
+                        SendScreenshotToDiscord(bitmap);
+                        string message = "Karakter öldü! Oyuna Bak!";
+                        SendDiscordWebhook(message);
+
+                    }
+
+                }
+
+                else
+                {
+                    string message = "Knight Online Açık Değil!";
+
+                    SendDiscordWebhook(message);
+
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void chk_onlyProblem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chk_onlyProblem.Checked == true)
+            {
+                num_Second.Value = 0;
+                num_Second.Enabled = false;
+                chk_OnlyKo.Enabled = false;
+                chk_DeathControl.Checked = true;
+                chk_DeathControl.Enabled = false;
+                chk_DeathControl.Text = "Ölüm kontrolü yapılacak!";
+                chk_Disconnected.Checked = true;
+                chk_Disconnected.Enabled = false;
+                chk_Disconnected.Text = "Dc kontrolü yapılacak!";
+            }
+
+            else
+            {
+                num_Second.Value = 1;
+                num_Second.Enabled = true;
+                chk_OnlyKo.Enabled = true;
+                chk_DeathControl.Checked = false;
+                chk_DeathControl.Enabled = true;
+                chk_Disconnected.Checked = false;
+                chk_Disconnected.Enabled = true;
+                chk_DeathControl.Text = "Ölüm kontrolü yap!";
+                chk_Disconnected.Text = "Dc kontrolü yap!";
             }
         }
     }
