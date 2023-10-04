@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Discord;
 using System.Net;
+using Tesseract;
 
 namespace DiscordTelegram
 {
@@ -27,6 +28,7 @@ namespace DiscordTelegram
 
         private string webhookUrl = "";
         private System.Threading.Timer screenshotTimer;
+        private System.Threading.Timer screenshotTimer2;
         private string token = "";
         private DiscordSocketClient client;
 
@@ -219,6 +221,8 @@ namespace DiscordTelegram
 
             btn_Start.Enabled = false;
             num_Second.Enabled = false;
+            chk_Disconnected.Enabled = false;
+            num_kacSaniyeCheck.Enabled = false;
             btn_Start.Text = "Program Başlatıldı!";
 
 
@@ -226,11 +230,17 @@ namespace DiscordTelegram
             {
                 MessageBox.Show("Program Başlatıldı. Lütfen Discord'a bakınız. Mesaj geldiyse her şey yolundadır.");
 
-                int aralik = (int)num_Second.Value;
 
                 string message = "Eğer bu mesajı aldıysanız discord ile başarıyla iletişim kurulmuştur.";
 
                 SendDiscordWebhook(message);
+
+
+                if (chk_Disconnected.Checked == true)
+                {
+                    int aralik = (int)num_kacSaniyeCheck.Value;
+                    screenshotTimer2 = new System.Threading.Timer(DisconnectedControl, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
+                }
 
                 ScreenShotControl();
             }
@@ -268,7 +278,6 @@ namespace DiscordTelegram
 
         private void Discord_Load(object sender, EventArgs e)
         {
-            chk_Disconnected.Enabled = false;
             chk_Ks.Enabled = false;
             num_avgExp.Enabled = false;
         }
@@ -277,6 +286,73 @@ namespace DiscordTelegram
         {
             screenshotTimer = null;
             ScreenShotControl();
+        }
+
+        public void DisconnectedControl(object state)
+        {
+            try
+            {
+                // Hedef uygulamanın başlık metnini belirtin
+                string targetWindowTitle = "Knight OnLine Client";
+
+                // Hedef pencereyi bulun
+                IntPtr targetWindowHandle = FindWindow(null, targetWindowTitle);
+
+                if (targetWindowHandle != IntPtr.Zero)
+                {
+                    // Hedef pencere boyutunu ve konumunu alın
+                    RECT targetWindowRect;
+                    GetWindowRect(targetWindowHandle, out targetWindowRect);
+
+                    // Ekran görüntüsünü alın
+                    Bitmap bitmap = CaptureWindow(targetWindowHandle, targetWindowRect);
+
+                    // Görüntüyü geçici bir dosyaya kaydet
+                    var tempFilePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.png");
+                    bitmap.Save(tempFilePath, System.Drawing.Imaging.ImageFormat.Png);
+
+                    string recognizedText;
+
+                    using (var engine = new TesseractEngine(@"C:\tessdata", "eng", EngineMode.Default))
+                    {
+                        using (var img = Pix.LoadFromFile(tempFilePath))
+                        {
+                            using (var page = engine.Process(img))
+                            {
+                                recognizedText = page.GetText();
+
+                            }
+                        }
+                    }
+
+                    // Geçici dosyayı sil
+                    System.IO.File.Delete(tempFilePath);
+
+                    if (recognizedText.ToLower().Contains("disconnected"))
+
+                    {
+                        SendScreenshotToDiscord(bitmap);
+                        string message = "DC var dikkat!";
+                        SendDiscordWebhook(message);
+
+                    }
+                }
+
+                else
+                {
+                    string message = "Knight Online Açık Değil!";
+
+                    SendDiscordWebhook(message);
+
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

@@ -16,6 +16,7 @@ using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Polling;
 using Telegram.Bot.Types;
+using Tesseract;
 
 namespace DiscordTelegram
 {
@@ -53,6 +54,7 @@ namespace DiscordTelegram
         string telegramApi;
         string chatID;
         private System.Threading.Timer timer;
+        private System.Threading.Timer timer2;
 
         private void btn_TelegramApiSave_Click(object sender, EventArgs e)
         {
@@ -90,7 +92,6 @@ namespace DiscordTelegram
 
         }
 
-
         private void btn_Exit_Click(object sender, EventArgs e)
         {
                       
@@ -103,6 +104,8 @@ namespace DiscordTelegram
             #region ButonAktifPasif
             btn_Start.Enabled = false;
             num_Second.Enabled = false;
+            chk_Disconnected.Enabled = false;
+            num_kacSaniyeCheck.Enabled = false;
             btn_Start.Text = "Program Başlatıldı!";
             #endregion
 
@@ -127,6 +130,12 @@ namespace DiscordTelegram
                     MessageBox.Show("Telegram API'ye erişim sırasında bir hata oluştu: " + ex.Message, "Hata", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
+                if (chk_Disconnected.Checked == true)
+                {
+                    int aralik = (int)num_kacSaniyeCheck.Value;
+                    timer2 = new System.Threading.Timer(DisconnectedControl, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
+                }
+
 
                 ScreenShotControl();
                 StartReceiver();
@@ -139,7 +148,6 @@ namespace DiscordTelegram
             }
 
         }
-
 
         private static void TelegramWebResponse(string apiUrl)
         {
@@ -197,7 +205,6 @@ namespace DiscordTelegram
 
         }
 
-
         public async Task ErrorMessage(ITelegramBotClient telegramBot, Exception e, CancellationToken cancellation)
         {
             if (e is ApiRequestException requestException)
@@ -233,7 +240,6 @@ namespace DiscordTelegram
             }
         }
 
-
         private async void TimerCallBackKnightOnlineClient(object sender)
         {
             // Hedef uygulamanın başlık metnini belirtin
@@ -266,7 +272,6 @@ namespace DiscordTelegram
 
         }
 
-
         static Bitmap CaptureWindow(IntPtr handle, RECT rect)
         {
             int width = rect.Right - rect.Left;
@@ -280,9 +285,7 @@ namespace DiscordTelegram
             }
 
             return screenshot;
-        }
-
-        
+        }        
 
         private void ScreenShotControl()
         {
@@ -307,7 +310,6 @@ namespace DiscordTelegram
         private void Telegram_Load(object sender, EventArgs e)
         {
             chk_Ks.Enabled = false;
-            chk_Disconnected.Enabled = false;
             num_avgExp.Enabled = false;
         }
 
@@ -316,5 +318,76 @@ namespace DiscordTelegram
             timer = null;
             ScreenShotControl();
         }
+
+        public void DisconnectedControl(object state)
+        {
+            try
+            {
+                // Hedef uygulamanın başlık metnini belirtin
+                string targetWindowTitle = "Knight OnLine Client";
+
+                // Hedef pencereyi bulun
+                IntPtr targetWindowHandle = FindWindow(null, targetWindowTitle);
+
+                if (targetWindowHandle != IntPtr.Zero)
+                {
+                    // Hedef pencere boyutunu ve konumunu alın
+                    RECT targetWindowRect;
+                    GetWindowRect(targetWindowHandle, out targetWindowRect);
+
+                    // Ekran görüntüsünü alın
+                    Bitmap bitmap = CaptureWindow(targetWindowHandle, targetWindowRect);
+
+                    // Görüntüyü geçici bir dosyaya kaydet
+                    var tempFilePath = Path.Combine(Path.GetTempPath(), $"{Guid.NewGuid()}.png");
+                    bitmap.Save(tempFilePath, System.Drawing.Imaging.ImageFormat.Png);
+
+                    string recognizedText;
+
+                    using (var engine = new TesseractEngine(@"C:\tessdata", "eng", EngineMode.Default))
+                    {
+                        using (var img = Pix.LoadFromFile(tempFilePath))
+                        {
+                            using (var page = engine.Process(img))
+                            {
+                                recognizedText = page.GetText();
+
+                            }
+                        }
+                    }
+
+                    // Geçici dosyayı sil
+                    System.IO.File.Delete(tempFilePath);
+
+                    if (recognizedText.ToLower().Contains("disconnected"))
+
+                    {
+                        SendPhotoTelegram(bitmap);
+                        string message = "DC var dikkat!";
+                        string apiUrl2 = $"https://api.telegram.org/bot{telegramApi}/sendMessage?chat_id={chatID}&text={message}";
+                        TelegramWebResponse(apiUrl2);
+
+                    }
+                }
+
+                else
+                {
+                    string message = "Knight Online Açık Değil!";
+
+                    string apiUrl = $"https://api.telegram.org/bot{telegramApi}/sendMessage?chat_id={chatID}&text={message}";
+
+                    TelegramWebResponse(apiUrl);
+
+                }
+
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
     }
 }

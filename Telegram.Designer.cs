@@ -44,8 +44,11 @@
             this.chk_Ks = new System.Windows.Forms.CheckBox();
             this.num_avgExp = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
+            this.num_kacSaniyeCheck = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_kacSaniyeCheck)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -241,12 +244,46 @@
             this.label5.TabIndex = 0;
             this.label5.Text = "Ortalama Gelen Exp :";
             // 
+            // num_kacSaniyeCheck
+            // 
+            this.num_kacSaniyeCheck.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.num_kacSaniyeCheck.Location = new System.Drawing.Point(356, 352);
+            this.num_kacSaniyeCheck.Maximum = new decimal(new int[] {
+            100000000,
+            0,
+            0,
+            0});
+            this.num_kacSaniyeCheck.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.num_kacSaniyeCheck.Name = "num_kacSaniyeCheck";
+            this.num_kacSaniyeCheck.Size = new System.Drawing.Size(115, 21);
+            this.num_kacSaniyeCheck.TabIndex = 5;
+            this.num_kacSaniyeCheck.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.label6.Location = new System.Drawing.Point(207, 353);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(143, 15);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "Kaç Saniyede Bir Check :";
+            // 
             // Telegram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 635);
             this.Controls.Add(this.label3);
+            this.Controls.Add(this.num_kacSaniyeCheck);
             this.Controls.Add(this.num_avgExp);
             this.Controls.Add(this.num_Second);
             this.Controls.Add(this.btn_Exit);
@@ -257,6 +294,7 @@
             this.Controls.Add(this.btn_chatIDSave);
             this.Controls.Add(this.txt_chatID);
             this.Controls.Add(this.btn_TelegramApiSave);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
@@ -270,6 +308,7 @@
             this.Load += new System.EventHandler(this.Telegram_Load);
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.num_kacSaniyeCheck)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -293,5 +332,7 @@
         private System.Windows.Forms.CheckBox chk_Ks;
         private System.Windows.Forms.NumericUpDown num_avgExp;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown num_kacSaniyeCheck;
+        private System.Windows.Forms.Label label6;
     }
 }
