@@ -48,7 +48,7 @@ namespace DiscordTelegram
 
         private void Choice_Load(object sender, EventArgs e)
         {
-            btn_Discord.Enabled = false;
+
         }
     }
 }

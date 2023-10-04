@@ -102,14 +102,13 @@ namespace DiscordTelegram
 
             #region ButonAktifPasif
             btn_Start.Enabled = false;
-            //chk_OnlyKo.Enabled = false;
             num_Second.Enabled = false;
             btn_Start.Text = "Program Başlatıldı!";
             #endregion
 
             try
             {
-                MessageBox.Show("Program Başlatıldı!");
+                MessageBox.Show("Program Başlatıldı. Lütfen Telegram'a bakınız. Mesaj geldiyse her şey yolundadır.");
 
                 string message = "";
 

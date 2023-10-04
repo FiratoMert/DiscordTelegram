@@ -16,7 +16,7 @@ namespace DiscordTelegram
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Telegram());
+            Application.Run(new Choice());
         }
     }
 }

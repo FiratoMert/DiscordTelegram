@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Discord;
+using System.Net;
 
 namespace DiscordTelegram
 {
@@ -73,6 +74,9 @@ namespace DiscordTelegram
                 string jsonPayload = Newtonsoft.Json.JsonConvert.SerializeObject(payload);
                 var httpContent = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
 
+                ServicePointManager.Expect100Continue = true;
+                ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+
                 await client.PostAsync(webhookUrl, httpContent);
             }
         }
@@ -92,6 +96,9 @@ namespace DiscordTelegram
                     {
                         fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("image/png");
                         content.Add(fileContent, "file", "screenshot.png");
+
+                        ServicePointManager.Expect100Continue = true;
+                        ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
                         // Discord Webhook'uyla ekran görüntüsünü gönder
                         await client.PostAsync(webhookUrl, content);
@@ -197,12 +204,79 @@ namespace DiscordTelegram
             {
                 webhookUrl = txt_webhookUrl.Text;
                 txt_webhookUrl.Enabled = false;
+                btn_webhookUrlSave.Enabled = false;
+                MessageBox.Show("Webhook Url Kaydedildi.");
             }
             else
             {
                 MessageBox.Show("Lütfen geçerli bir webhook url giriniz.");
             }
 
+        }
+
+        private void btn_Start_Click(object sender, EventArgs e)
+        {
+
+            btn_Start.Enabled = false;
+            num_Second.Enabled = false;
+            btn_Start.Text = "Program Başlatıldı!";
+
+
+            try
+            {
+                MessageBox.Show("Program Başlatıldı. Lütfen Discord'a bakınız. Mesaj geldiyse her şey yolundadır.");
+
+                int aralik = (int)num_Second.Value;
+
+                string message = "Eğer bu mesajı aldıysanız discord ile başarıyla iletişim kurulmuştur.";
+
+                SendDiscordWebhook(message);
+
+                ScreenShotControl();
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void ScreenShotControl()
+        {
+            int aralik = (int)num_Second.Value;
+
+            if (btn_Start.Enabled == false)
+            {
+                if (num_Second.Value != 0)
+                {
+                    if (chk_OnlyKo.Checked == true)
+                    {
+                        screenshotTimer = new System.Threading.Timer(TimerCallBackKnightOnlineClient, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
+                    }
+                    else
+                    {
+                        screenshotTimer = new System.Threading.Timer(TimerCallBackFullScreen, null, TimeSpan.Zero, TimeSpan.FromSeconds(aralik));
+                    }
+                }
+            }
+        }
+
+        private void btn_Exit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void Discord_Load(object sender, EventArgs e)
+        {
+            chk_Disconnected.Enabled = false;
+            chk_Ks.Enabled = false;
+            num_avgExp.Enabled = false;
+        }
+
+        private void chk_OnlyKo_CheckedChanged(object sender, EventArgs e)
+        {
+            screenshotTimer = null;
+            ScreenShotControl();
         }
     }
 }
