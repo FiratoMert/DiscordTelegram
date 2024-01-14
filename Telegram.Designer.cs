@@ -46,6 +46,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.chk_onlyProblem = new System.Windows.Forms.CheckBox();
             this.chk_DeathControl = new System.Windows.Forms.CheckBox();
+            this.rd_FullScreen = new System.Windows.Forms.RadioButton();
+            this.rd_WindowMode = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).BeginInit();
             this.SuspendLayout();
@@ -147,7 +149,7 @@
             // num_Second
             // 
             this.num_Second.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.num_Second.Location = new System.Drawing.Point(52, 212);
+            this.num_Second.Location = new System.Drawing.Point(46, 212);
             this.num_Second.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -232,11 +234,11 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(226, 315);
+            this.label5.Location = new System.Drawing.Point(316, 243);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(124, 15);
+            this.label5.Size = new System.Drawing.Size(52, 45);
             this.label5.TabIndex = 0;
-            this.label5.Text = "Ortalama Gelen Exp :";
+            this.label5.Text = "Oyun\r\nEkran\r\nDurumu";
             // 
             // chk_onlyProblem
             // 
@@ -261,11 +263,37 @@
             this.chk_DeathControl.Text = "Ölüm Kontrolü Yap";
             this.chk_DeathControl.UseVisualStyleBackColor = true;
             // 
+            // rd_FullScreen
+            // 
+            this.rd_FullScreen.AutoSize = true;
+            this.rd_FullScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.rd_FullScreen.Location = new System.Drawing.Point(374, 243);
+            this.rd_FullScreen.Name = "rd_FullScreen";
+            this.rd_FullScreen.Size = new System.Drawing.Size(88, 19);
+            this.rd_FullScreen.TabIndex = 22;
+            this.rd_FullScreen.Text = "Tam Ekran ";
+            this.rd_FullScreen.UseVisualStyleBackColor = true;
+            // 
+            // rd_WindowMode
+            // 
+            this.rd_WindowMode.AutoSize = true;
+            this.rd_WindowMode.Checked = true;
+            this.rd_WindowMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.rd_WindowMode.Location = new System.Drawing.Point(374, 268);
+            this.rd_WindowMode.Name = "rd_WindowMode";
+            this.rd_WindowMode.Size = new System.Drawing.Size(106, 19);
+            this.rd_WindowMode.TabIndex = 22;
+            this.rd_WindowMode.TabStop = true;
+            this.rd_WindowMode.Text = "Pencere Modu";
+            this.rd_WindowMode.UseVisualStyleBackColor = true;
+            // 
             // Telegram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(519, 587);
+            this.Controls.Add(this.rd_WindowMode);
+            this.Controls.Add(this.rd_FullScreen);
             this.Controls.Add(this.chk_onlyProblem);
             this.Controls.Add(this.chk_DeathControl);
             this.Controls.Add(this.label3);
@@ -317,5 +345,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chk_onlyProblem;
         private System.Windows.Forms.CheckBox chk_DeathControl;
+        private System.Windows.Forms.RadioButton rd_FullScreen;
+        private System.Windows.Forms.RadioButton rd_WindowMode;
     }
 }

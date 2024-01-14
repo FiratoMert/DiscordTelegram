@@ -16,6 +16,8 @@ using System.Windows.Forms;
 using Discord;
 using System.Net;
 using Tesseract;
+using Discord.Commands;
+using System.Reflection;
 
 namespace DiscordTelegram
 {
@@ -32,6 +34,9 @@ namespace DiscordTelegram
         private System.Threading.Timer screenshotTimer3;
         private string token = "";
         private DiscordSocketClient client;
+        private CommandService _commands;
+        private IServiceProvider _services;
+
 
         // Dış işlevleri (API'ları) tanımlayın
         [DllImport("user32.dll", SetLastError = true)]
@@ -53,6 +58,52 @@ namespace DiscordTelegram
             public int Right;
             public int Bottom;
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            try
+            {
+                client = new DiscordSocketClient();
+                _commands = new CommandService();
+
+                client.Log += Log;
+
+                RegisterCommandsAsync();
+
+                client.LoginAsync(TokenType.Bot, "MTE1ODk5Mjc2NDA4MDQ5Njc2Mw.GOr6Ys.s7xw0c42FvY3jInoujK3uDUAcIxOcSUatW-sQc");
+                client.StartAsync();
+                Task.Delay(-1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
+        }
+
+        public async Task RegisterCommandsAsync()
+        {
+            client.UserVoiceStateUpdated += HandleUserVoiceStateUpdated;
+
+            await _commands.AddModulesAsync(Assembly.GetEntryAssembly(), _services);
+        }
+
+        private async Task HandleUserVoiceStateUpdated(SocketUser user, SocketVoiceState oldState, SocketVoiceState newState)
+        {
+            // Örnek: Kullanıcı belirli bir odaya katıldığında davet gönder
+            ulong targetUserId = 953748749740556312; // Davet gönderilecek kullanıcının ID'si
+            ulong targetVoiceChannelId = 1158993150023565343; // Davet gönderilecek sesli kanalın ID'si
+
+            if (user.Id == targetUserId && newState.VoiceChannel?.Id == targetVoiceChannelId)
+            {
+                var voiceChannel = client.GetChannel(targetVoiceChannelId) as IVoiceChannel;
+                var invite = await voiceChannel.CreateInviteAsync();
+
+                await user.SendMessageAsync($"Hey, gel ve bize katıl! {invite.Url}");
+            }
+        }
+
 
         private Bitmap TakeScreenshot()
         {
@@ -464,5 +515,7 @@ namespace DiscordTelegram
                 chk_Disconnected.Text = "Dc kontrolü yap!";
             }
         }
+
+
     }
 }
