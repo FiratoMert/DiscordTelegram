@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -101,6 +102,18 @@ namespace DiscordTelegram
 
         private void btn_Start_Click(object sender, EventArgs e)
         {
+
+            if (chk_RememberMe.Checked == true)
+            {
+                Registry.CurrentUser.CreateSubKey("discordtelegram").CreateSubKey("telegram").SetValue("TelegramApi", txt_TelegramApi.Text);
+                Registry.CurrentUser.CreateSubKey("discordtelegram").CreateSubKey("telegram").SetValue("ChatId", txt_chatID.Text);
+            }
+            else
+            {
+                Registry.CurrentUser.CreateSubKey("discordtelegram").CreateSubKey("telegram").SetValue("TelegramApi", "");
+                Registry.CurrentUser.CreateSubKey("discordtelegram").CreateSubKey("telegram").SetValue("ChatId", "");
+            }
+            
 
             #region ButonAktifPasif
             btn_Start.Enabled = false;
@@ -322,8 +335,12 @@ namespace DiscordTelegram
             chk_Ks.Enabled = false;
             num_avgExp.Enabled = false;
 
-            txt_TelegramApi.Text = "6955983573:AAF9kNLogByapyBy7sQqu3hwMGTeEWQAoyQ";
-            txt_chatID.Text = "476409443";
+            if (Registry.CurrentUser.OpenSubKey("discordtelegram") != null && Registry.CurrentUser.OpenSubKey("discordtelegram") != null)
+            {
+                txt_TelegramApi.Text = Registry.CurrentUser.OpenSubKey("discordtelegram").OpenSubKey("telegram").GetValue("TelegramApi").ToString();
+                txt_chatID.Text = Registry.CurrentUser.OpenSubKey("discordtelegram").OpenSubKey("telegram").GetValue("ChatId").ToString();
+                chk_RememberMe.Checked = true;
+            }
 
         }
 

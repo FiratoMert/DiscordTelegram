@@ -48,6 +48,7 @@
             this.chk_DeathControl = new System.Windows.Forms.CheckBox();
             this.rd_FullScreen = new System.Windows.Forms.RadioButton();
             this.rd_WindowMode = new System.Windows.Forms.RadioButton();
+            this.chk_RememberMe = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.num_Second)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.num_avgExp)).BeginInit();
             this.SuspendLayout();
@@ -86,7 +87,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label2.Location = new System.Drawing.Point(353, 545);
+            this.label2.Location = new System.Drawing.Point(353, 568);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(127, 15);
             this.label2.TabIndex = 0;
@@ -116,7 +117,7 @@
             // 
             this.chk_OnlyKo.AutoSize = true;
             this.chk_OnlyKo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_OnlyKo.Location = new System.Drawing.Point(49, 239);
+            this.chk_OnlyKo.Location = new System.Drawing.Point(49, 262);
             this.chk_OnlyKo.Name = "chk_OnlyKo";
             this.chk_OnlyKo.Size = new System.Drawing.Size(218, 19);
             this.chk_OnlyKo.TabIndex = 3;
@@ -127,7 +128,7 @@
             // btn_Start
             // 
             this.btn_Start.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_Start.Location = new System.Drawing.Point(46, 364);
+            this.btn_Start.Location = new System.Drawing.Point(46, 387);
             this.btn_Start.Name = "btn_Start";
             this.btn_Start.Size = new System.Drawing.Size(434, 72);
             this.btn_Start.TabIndex = 4;
@@ -138,7 +139,7 @@
             // btn_Exit
             // 
             this.btn_Exit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.btn_Exit.Location = new System.Drawing.Point(46, 442);
+            this.btn_Exit.Location = new System.Drawing.Point(46, 465);
             this.btn_Exit.Name = "btn_Exit";
             this.btn_Exit.Size = new System.Drawing.Size(434, 72);
             this.btn_Exit.TabIndex = 4;
@@ -149,7 +150,7 @@
             // num_Second
             // 
             this.num_Second.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.num_Second.Location = new System.Drawing.Point(46, 212);
+            this.num_Second.Location = new System.Drawing.Point(46, 235);
             this.num_Second.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -168,7 +169,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label3.Location = new System.Drawing.Point(49, 179);
+            this.label3.Location = new System.Drawing.Point(49, 202);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(428, 30);
             this.label3.TabIndex = 6;
@@ -189,7 +190,7 @@
             // 
             this.chk_Disconnected.AutoSize = true;
             this.chk_Disconnected.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_Disconnected.Location = new System.Drawing.Point(49, 289);
+            this.chk_Disconnected.Location = new System.Drawing.Point(49, 312);
             this.chk_Disconnected.Name = "chk_Disconnected";
             this.chk_Disconnected.Size = new System.Drawing.Size(114, 19);
             this.chk_Disconnected.TabIndex = 3;
@@ -200,7 +201,7 @@
             // 
             this.chk_Ks.AutoSize = true;
             this.chk_Ks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_Ks.Location = new System.Drawing.Point(49, 314);
+            this.chk_Ks.Location = new System.Drawing.Point(49, 337);
             this.chk_Ks.Name = "chk_Ks";
             this.chk_Ks.Size = new System.Drawing.Size(113, 19);
             this.chk_Ks.TabIndex = 3;
@@ -210,7 +211,7 @@
             // num_avgExp
             // 
             this.num_avgExp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.num_avgExp.Location = new System.Drawing.Point(356, 313);
+            this.num_avgExp.Location = new System.Drawing.Point(356, 336);
             this.num_avgExp.Maximum = new decimal(new int[] {
             100000000,
             0,
@@ -234,7 +235,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label5.Location = new System.Drawing.Point(316, 243);
+            this.label5.Location = new System.Drawing.Point(316, 266);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(52, 45);
             this.label5.TabIndex = 0;
@@ -244,7 +245,7 @@
             // 
             this.chk_onlyProblem.AutoSize = true;
             this.chk_onlyProblem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_onlyProblem.Location = new System.Drawing.Point(49, 339);
+            this.chk_onlyProblem.Location = new System.Drawing.Point(49, 362);
             this.chk_onlyProblem.Name = "chk_onlyProblem";
             this.chk_onlyProblem.Size = new System.Drawing.Size(300, 19);
             this.chk_onlyProblem.TabIndex = 21;
@@ -256,7 +257,7 @@
             // 
             this.chk_DeathControl.AutoSize = true;
             this.chk_DeathControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.chk_DeathControl.Location = new System.Drawing.Point(49, 264);
+            this.chk_DeathControl.Location = new System.Drawing.Point(49, 287);
             this.chk_DeathControl.Name = "chk_DeathControl";
             this.chk_DeathControl.Size = new System.Drawing.Size(129, 19);
             this.chk_DeathControl.TabIndex = 20;
@@ -267,7 +268,7 @@
             // 
             this.rd_FullScreen.AutoSize = true;
             this.rd_FullScreen.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.rd_FullScreen.Location = new System.Drawing.Point(374, 243);
+            this.rd_FullScreen.Location = new System.Drawing.Point(374, 266);
             this.rd_FullScreen.Name = "rd_FullScreen";
             this.rd_FullScreen.Size = new System.Drawing.Size(88, 19);
             this.rd_FullScreen.TabIndex = 22;
@@ -279,13 +280,24 @@
             this.rd_WindowMode.AutoSize = true;
             this.rd_WindowMode.Checked = true;
             this.rd_WindowMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.rd_WindowMode.Location = new System.Drawing.Point(374, 268);
+            this.rd_WindowMode.Location = new System.Drawing.Point(374, 291);
             this.rd_WindowMode.Name = "rd_WindowMode";
             this.rd_WindowMode.Size = new System.Drawing.Size(106, 19);
             this.rd_WindowMode.TabIndex = 22;
             this.rd_WindowMode.TabStop = true;
             this.rd_WindowMode.Text = "Pencere Modu";
             this.rd_WindowMode.UseVisualStyleBackColor = true;
+            // 
+            // chk_RememberMe
+            // 
+            this.chk_RememberMe.AutoSize = true;
+            this.chk_RememberMe.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.chk_RememberMe.Location = new System.Drawing.Point(46, 180);
+            this.chk_RememberMe.Name = "chk_RememberMe";
+            this.chk_RememberMe.Size = new System.Drawing.Size(90, 19);
+            this.chk_RememberMe.TabIndex = 20;
+            this.chk_RememberMe.Text = "Beni Hatırla";
+            this.chk_RememberMe.UseVisualStyleBackColor = true;
             // 
             // Telegram
             // 
@@ -295,6 +307,7 @@
             this.Controls.Add(this.rd_WindowMode);
             this.Controls.Add(this.rd_FullScreen);
             this.Controls.Add(this.chk_onlyProblem);
+            this.Controls.Add(this.chk_RememberMe);
             this.Controls.Add(this.chk_DeathControl);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.num_avgExp);
@@ -347,5 +360,6 @@
         private System.Windows.Forms.CheckBox chk_DeathControl;
         private System.Windows.Forms.RadioButton rd_FullScreen;
         private System.Windows.Forms.RadioButton rd_WindowMode;
+        private System.Windows.Forms.CheckBox chk_RememberMe;
     }
 }

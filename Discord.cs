@@ -189,14 +189,14 @@ namespace DiscordTelegram
                 // Ekran görüntüsünü alın
                 Bitmap screenshot = CaptureWindow(targetWindowHandle, targetWindowRect);
 
-                SendScreenshotToDiscord(screenshot);
+                await SendScreenshotToDiscord(screenshot);
             }
 
             else
             {
                 string message = "Knight Online Açık Değil!";
 
-                SendDiscordWebhook(message);
+                await SendDiscordWebhook(message);
 
             }
 
@@ -240,7 +240,7 @@ namespace DiscordTelegram
 
         }
 
-        private void btn_Start_Click(object sender, EventArgs e)
+        private async void btn_Start_Click(object sender, EventArgs e)
         {
             #region ButonAktifPasif
             btn_Start.Enabled = false;
@@ -259,7 +259,7 @@ namespace DiscordTelegram
 
                 string message = "Eğer bu mesajı aldıysanız discord ile başarıyla iletişim kurulmuştur.";
 
-                SendDiscordWebhook(message);
+                await SendDiscordWebhook(message);
 
 
                 if (chk_Disconnected.Checked == true)
