@@ -31,11 +31,10 @@ namespace DiscordTelegram
         private string webhookUrl = "";
         private System.Threading.Timer screenshotTimer;
         private System.Threading.Timer screenshotTimer2;
-        private System.Threading.Timer screenshotTimer3;
-        private string token = "";
+        private System.Threading.Timer screenshotTimer3;        
         private DiscordSocketClient client;
         private CommandService _commands;
-        private IServiceProvider _services;
+        private readonly IServiceProvider _services;
 
 
         // Dış işlevleri (API'ları) tanımlayın
@@ -185,8 +184,7 @@ namespace DiscordTelegram
             if (targetWindowHandle != IntPtr.Zero)
             {
                 // Hedef pencere boyutunu ve konumunu alın
-                RECT targetWindowRect;
-                GetWindowRect(targetWindowHandle, out targetWindowRect);
+                GetWindowRect(targetWindowHandle, out RECT targetWindowRect);
 
                 // Ekran görüntüsünü alın
                 Bitmap screenshot = CaptureWindow(targetWindowHandle, targetWindowRect);
@@ -218,33 +216,7 @@ namespace DiscordTelegram
             }
 
             return screenshot;
-        }
-
-        private async Task MessageReceived(SocketMessage message)
-        {
-            // Gelen mesaj bir bot mesajıysa veya içeriğinde "/ss" geçmiyorsa işlem yapma
-            if (message.Author.IsBot || !message.Content.Contains("$ss"))
-            {
-                return;
-            }
-
-            // Ekran görüntüsü al
-            Bitmap screenshot = TakeScreenshot();
-
-            // Ekran görüntüsünü Discord'a gönder
-            await SendScreenshotToDiscord(message.Channel, screenshot);
-        }
-
-        private async Task SendScreenshotToDiscord(ISocketMessageChannel channel, Bitmap screenshot)
-        {
-            using (MemoryStream stream = new MemoryStream())
-            {
-                screenshot.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
-                stream.Seek(0, SeekOrigin.Begin);
-
-                await channel.SendFileAsync(stream, "screenshot.png");
-            }
-        }
+        }                
 
         private Task Log(LogMessage msg)
         {
@@ -364,8 +336,7 @@ namespace DiscordTelegram
                 if (targetWindowHandle != IntPtr.Zero)
                 {
                     // Hedef pencere boyutunu ve konumunu alın
-                    RECT targetWindowRect;
-                    GetWindowRect(targetWindowHandle, out targetWindowRect);
+                    GetWindowRect(targetWindowHandle, out RECT targetWindowRect);
 
                     // Ekran görüntüsünü alın
                     Bitmap bitmap = CaptureWindow(targetWindowHandle, targetWindowRect);
@@ -432,8 +403,7 @@ namespace DiscordTelegram
                 if (targetWindowHandle != IntPtr.Zero)
                 {
                     // Hedef pencere boyutunu ve konumunu alın
-                    RECT targetWindowRect;
-                    GetWindowRect(targetWindowHandle, out targetWindowRect);
+                    GetWindowRect(targetWindowHandle, out RECT targetWindowRect);
 
                     // Ekran görüntüsünü alın
                     Bitmap bitmap = CaptureWindow(targetWindowHandle, targetWindowRect);

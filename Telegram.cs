@@ -322,6 +322,9 @@ namespace DiscordTelegram
             chk_Ks.Enabled = false;
             num_avgExp.Enabled = false;
 
+            txt_TelegramApi.Text = "6955983573:AAF9kNLogByapyBy7sQqu3hwMGTeEWQAoyQ";
+            txt_chatID.Text = "476409443";
+
         }
 
         private void chk_OnlyKo_CheckedChanged(object sender, EventArgs e)
